@@ -225,10 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-        let lightningTimer = 0;
         let lightningFlash = 0;
         let lightningX = 0;
         let lightningHeight = 0;
+        let lightningBranches = [];
         let rainDrops = [];
 
         function resizeCanvas() {
@@ -306,6 +306,27 @@ document.addEventListener('DOMContentLoaded', () => {
         initParticles();
         window.addEventListener('resize', initParticles);
 
+        function triggerLightning() {
+            lightningFlash = 1.4;
+            lightningX = width * (Math.random() * 0.7 + 0.15);
+            lightningHeight = height * (Math.random() * 0.28 + 0.2);
+            lightningBranches = [];
+
+            let branchX = lightningX;
+            let branchY = 0;
+            const segmentCount = 7;
+
+            for (let index = 0; index < segmentCount; index++) {
+                branchX += (Math.random() - 0.5) * width * 0.035;
+                branchY += lightningHeight / segmentCount;
+                lightningBranches.push({ x: branchX, y: branchY });
+            }
+        }
+
+        window.addEventListener('pointerdown', event => {
+            if (event.pointerType === 'touch') triggerLightning();
+        }, { passive: true });
+
         function animateParticles() {
             ctx.clearRect(0, 0, width, height);
             particles.forEach(p => {
@@ -329,25 +350,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.stroke();
             });
 
-            lightningTimer -= 16.67;
-            if (lightningTimer <= 0) {
-                lightningTimer = Math.random() * 2200 + 1400;
-                lightningFlash = 1.4;
-                lightningX = width * (Math.random() * 0.7 + 0.15);
-                lightningHeight = height * (Math.random() * 0.28 + 0.2);
-            }
-
             if (lightningFlash > 0) {
                 const flashOpacity = Math.min(lightningFlash, 1) * 0.28;
 
                 ctx.strokeStyle = `rgba(245, 220, 145, ${flashOpacity})`;
-                ctx.lineWidth = 1.5;
+                ctx.lineWidth = 2;
                 ctx.beginPath();
                 ctx.moveTo(lightningX, 0);
-                ctx.lineTo(lightningX - width * 0.012, lightningHeight * 0.35);
-                ctx.lineTo(lightningX + width * 0.01, lightningHeight * 0.58);
-                ctx.lineTo(lightningX - width * 0.006, lightningHeight);
+                lightningBranches.forEach(point => ctx.lineTo(point.x, point.y));
                 ctx.stroke();
+
+                lightningBranches.forEach((point, index) => {
+                    if (index < 2 || index > lightningBranches.length - 2) return;
+
+                    ctx.beginPath();
+                    ctx.moveTo(point.x, point.y);
+                    ctx.lineTo(point.x + (Math.random() - 0.5) * width * 0.06, point.y + lightningHeight * 0.12);
+                    ctx.stroke();
+                });
 
                 ctx.fillStyle = `rgba(245, 220, 145, ${flashOpacity * 0.18})`;
                 ctx.fillRect(0, 0, width, height);
