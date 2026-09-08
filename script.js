@@ -82,6 +82,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Add touch feedback without affecting normal text selection.
+    document.addEventListener('pointerdown', event => {
+        const control = event.target.closest('a, button');
+        if (!control || event.pointerType !== 'touch') return;
+
+        control.classList.add('touch-pressed');
+        if (navigator.vibrate) navigator.vibrate(12);
+    });
+
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(eventName => {
+        document.addEventListener(eventName, event => {
+            const control = event.target.closest('a, button');
+            if (control) control.classList.remove('touch-pressed');
+        });
+    });
+
     // Apply the same scroll motion when arriving through a page link or browser history.
     if (window.location.hash) {
         const initialTarget = document.querySelector(window.location.hash);

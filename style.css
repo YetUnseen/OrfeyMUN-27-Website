@@ -245,6 +245,41 @@ body.is-anchor-scrolling::after {
 .nav-link { color: var(--text-ash); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: var(--transition); }
 .nav-link:hover { color: var(--gold-lyre); }
 
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn, .nav-link, .filter-btn, .mobile-toggle {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btn.touch-pressed,
+  .nav-link.touch-pressed,
+  .filter-btn.touch-pressed,
+  .mobile-toggle.touch-pressed {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.95), 0 0 24px rgba(255, 255, 255, 0.75);
+    filter: brightness(1.25);
+  }
+
+  .btn.touch-pressed::after,
+  .nav-link.touch-pressed::after,
+  .filter-btn.touch-pressed::after,
+  .mobile-toggle.touch-pressed::after {
+    content: '';
+    position: absolute;
+    inset: -0.45rem -0.7rem;
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45), 0 0 22px 8px rgba(255, 255, 255, 0.42);
+    pointer-events: none;
+  }
+
+  .btn, .nav-link, .filter-btn, .mobile-toggle { position: relative; }
+}
+
 .nav-actions { display: flex; gap: 1rem; }
 .mobile-toggle { display: none; background: none; border: none; color: var(--text-marble); font-size: 1.5rem; cursor: pointer; }
 
