@@ -92,6 +92,11 @@ body.is-anchor-scrolling::after {
   transition-duration: 750ms;
 }
 
+.page-transition.no-transition .transition-door,
+.page-transition.no-transition .transition-lyre {
+  transition: none;
+}
+
 .transition-door-left {
   left: 0;
   transform: translateX(0);

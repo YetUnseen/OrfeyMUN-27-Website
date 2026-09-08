@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const skipInitialOpening = isScrollDestination;
 
     if (skipInitialOpening) {
-        pageTransition.classList.add('is-hidden');
+        pageTransition.classList.add('is-hidden', 'no-transition');
     } else {
         pageTransition.classList.add('initial-opening');
         requestAnimationFrame(() => {
