@@ -48,6 +48,7 @@ body.dark-theme {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
+  display: none;
 }
 
 body.is-anchor-scrolling::before,
@@ -274,21 +275,15 @@ a, button {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: conic-gradient(
-      from 0deg,
-      transparent 0deg 22deg,
-      rgba(255, 255, 255, 0.95) 48deg,
-      rgba(255, 255, 255, 0.28) 78deg,
-      transparent 118deg 360deg
-    );
-    padding: 0.65rem;
-    filter: blur(11px);
-    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.34);
+    padding: 0.7rem;
+    filter: blur(15px);
+    opacity: 0.82;
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask-composite: exclude;
-    animation: perimeter-field 2.8s linear infinite;
+    transition: opacity 180ms ease, filter 180ms ease;
     pointer-events: none;
   }
 
@@ -300,29 +295,19 @@ a, button {
     position: absolute;
     inset: 0.1rem;
     border-radius: inherit;
-    background: conic-gradient(
-      from 0deg,
-      transparent 0deg 34deg,
-      rgba(255, 255, 255, 0.34) 62deg,
-      transparent 104deg 360deg
-    );
-    padding: 0.9rem;
-    filter: blur(17px);
-    opacity: 0.75;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    filter: blur(22px);
+    opacity: 0.65;
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask-composite: exclude;
-    animation: perimeter-field 2.8s linear infinite reverse;
+    transition: opacity 180ms ease, filter 180ms ease;
     pointer-events: none;
   }
 
   .btn, .nav-link, .filter-btn, .mobile-toggle { position: relative; }
-}
-
-@keyframes perimeter-field {
-  from { transform: rotate(0deg) scale(1.02); }
-  to { transform: rotate(360deg) scale(1.02); }
 }
 
 .nav-actions { display: flex; gap: 1rem; }
@@ -560,15 +545,9 @@ a, button {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg 24deg,
-    rgba(255, 255, 255, 0.88) 52deg,
-    rgba(255, 255, 255, 0.24) 86deg,
-    transparent 124deg 360deg
-  );
-  padding: 0.8rem;
-  filter: blur(14px);
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0.9rem;
+  filter: blur(18px);
   pointer-events: none;
   opacity: 0;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -579,7 +558,6 @@ a, button {
 
 .committee-detail-list > .glass-panel.touch-held::after {
   opacity: 1;
-  animation: perimeter-field 3.2s linear infinite;
 }
 
 .committees-page .committee-detail-list h2 {
