@@ -375,7 +375,7 @@ body.is-anchor-scrolling::after {
 .footer-links h4 { font-family: var(--font-mythic); font-weight: 700; color: var(--gold-lyre); margin-bottom: 1.5rem; font-size: 1.1rem; }
 .footer-links a { display: block; color: var(--text-ash); text-decoration: none; margin-bottom: 0.85rem; font-size: 0.95rem; transition: var(--transition); }
 .footer-links a:hover { color: var(--fire-amber); transform: translateX(5px); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-top: 1px solid var(--border-color); color: var(--text-ash); font-size: 0.85rem; }
+.footer-bottom { display: flex; justify-content: center; align-items: center; padding: 2rem 0; border-top: 1px solid var(--border-color); color: var(--text-ash); font-size: 0.85rem; text-align: center; }
 .legal-links { display: flex; gap: 2rem; }
 .legal-links a { color: var(--text-ash); text-decoration: none; transition: var(--transition); }
 .legal-links a:hover { color: var(--gold-lyre); }
