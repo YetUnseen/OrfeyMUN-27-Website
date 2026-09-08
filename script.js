@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="tba-badge">Topic TBA</span>
                     <h3 style="margin: 0.5rem 0;">${committee.title}</h3>
                     <p style="margin-bottom: 1.5rem; flex-grow: 1;">The architects are currently crafting the study guide for this realm. Details will be revealed soon.</p>
-                    <a href="committees.html" class="btn btn-outline" style="width: 100%;">Enter Realm</a>
+                    <a href="committees/" class="btn btn-outline" style="width: 100%;">Enter Realm</a>
                 `;
                 committeeGrid.appendChild(article);
             });
