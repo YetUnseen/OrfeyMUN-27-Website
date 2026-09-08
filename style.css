@@ -307,7 +307,15 @@ a, button {
   display: none;
 }
 
-.hero-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; animation: hero-arrival 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.hero-content { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  gap: 1.5rem; 
+  animation: hero-arrival 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both; 
+  width: 100%;
+}
 
 .badge {
   display: inline-flex;
@@ -326,14 +334,16 @@ a, button {
 
 .hero-title { font-family: var(--font-mythic); font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800; line-height: 1.15; }
 .hero-subtitle { color: var(--text-ash); font-size: clamp(1.1rem, 2vw, 1.25rem); max-width: 650px; font-weight: 300; }
+
 .hero-cta-group { 
   display: flex; 
   justify-content: center;
   align-items: center;
   gap: 1.25rem; 
   margin-top: 2rem; 
-  width: 100%; /* Ensures full container width on mobile and desktop */
+  width: 100%;
 }
+
 .stats-section { background: var(--bg-secondary); }
 .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color); }
 .stat-card { padding: 4rem 2rem; text-align: center; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -386,7 +396,6 @@ a, button {
 .committees-section .filter-group { margin-bottom: 2rem; }
 .committees-section .committee-grid { margin-top: 0.5rem; }
 
-/* NEW COMMITTEE CARD STYLES */
 .committee-card { 
   position: relative; 
   overflow: hidden; 
@@ -438,7 +447,6 @@ a, button {
 
 .card-icon { font-size: 3rem; color: var(--text-ash); margin-bottom: 0.5rem; }
 .tba-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 4px; background: rgba(255, 255, 255, 0.05); color: var(--text-ash); text-transform: uppercase; letter-spacing: 0.1em; }
-
 
 .footer { background: var(--bg-secondary); padding-top: 5rem; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
@@ -534,8 +542,18 @@ a, button {
   .hero { min-height: 92svh; padding-top: 4.5rem; }
   .hero-title { font-size: clamp(2.35rem, 11vw, 3.5rem); }
   .hero-subtitle { font-size: 1rem; line-height: 1.7; }
-  .hero-cta-group { flex-direction: column; width: 100%; max-width: 320px; margin-top: 1rem; }
-  .btn-lg { width: 100%; min-height: 3.25rem; }
+  
+  /* PERFECT CENTERED MOBILE HERO CTA */
+  .hero-cta-group { 
+    flex-direction: column; 
+    width: 100%; 
+    max-width: 320px; 
+    margin: 1.5rem auto 0 auto; 
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn-lg { width: 100%; min-height: 3.25rem; justify-content: center; text-align: center; }
   .section-title { font-size: clamp(2rem, 9vw, 2.6rem); }
   .section-desc { font-size: 1rem; }
   .filter-group { justify-content: flex-start; overflow-x: auto; padding: 0.25rem 0.25rem 0.75rem; margin-right: -1.25rem; margin-left: -1.25rem; scrollbar-width: none; }
@@ -555,7 +573,6 @@ a, button {
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   .legal-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
   
-  /* OLED SLEEK MOBILE MENU CSS */
   .nav-actions { display: none; }
   
   .nav-links { 
@@ -585,6 +602,7 @@ a, button {
     transform: translateY(0);
   }
 }
+
 html { 
   scroll-behavior: smooth;
 }

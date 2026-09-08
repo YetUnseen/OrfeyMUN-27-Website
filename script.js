@@ -260,15 +260,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3. Mobile Menu Toggle ---
+    // --- 3. Mobile Menu Toggle with Stronger Dual-Pulse Haptic ---
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
     
     if (mobileToggle) {
         let isExpanded = false;
         mobileToggle.addEventListener('click', () => {
-            // Haptic feedback (crisp 50ms vibration)
-            if (navigator.vibrate) navigator.vibrate(50);
+            // Stronger dual-pulse tactile haptic pattern (Pulse, pause, pulse)
+            if (navigator.vibrate) navigator.vibrate([70, 35, 70]);
             
             isExpanded = !isExpanded;
             if (isExpanded) {
