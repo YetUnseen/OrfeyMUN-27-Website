@@ -9,8 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg class="transition-lyre-art" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 3v12a6 6 0 0 0 12 0V3"></path>
                 <path d="M6 3c0 4 3 6 6 6s6-2 6-6"></path>
+                <path d="M9 9v9"></path>
                 <path d="M10 9v9"></path>
+                <path d="M11 9v9"></path>
+                <path d="M12 9v9"></path>
+                <path d="M13 9v9"></path>
                 <path d="M14 9v9"></path>
+                <path d="M15 9v9"></path>
                 <path d="M9 21h6"></path>
             </svg>
         </div>
@@ -118,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function createDust() {
-            const dustCount = window.innerWidth < 768 ? 28 : 54;
+            const dustCount = window.innerWidth < 768 ? 36 : 70;
             dust = Array.from({ length: dustCount }, () => ({
                 x: Math.random() * canvasWidth,
                 y: Math.random() * canvasHeight,
