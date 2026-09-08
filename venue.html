@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venue | OrfeyMun'27</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    
+    <canvas id="ambient-canvas"></canvas>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="ph-fill ph-harp"></i>
+                <span>OrfeyMun<span class="highlight">'27</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#about" class="nav-link">The Mythos</a>
+                <a href="committees.html" class="nav-link">Committees</a>
+                <a href="venue.html" class="nav-link" style="color: var(--gold-lyre);">Venue & Date</a>
+                <a href="index.html#faq" class="nav-link">Oracle (FAQ)</a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html#register" class="btn btn-primary">Pre-Register</a>
+            </div>
+            <button class="mobile-toggle" aria-label="Toggle Menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="section-padding" style="padding-top: 10rem; min-height: 100vh;">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="hero-title">The <span class="gradient-text">Sanctuary</span></h1>
+                <p class="section-desc">Navigate your way to the grand debates of OrfeyMun'27.</p>
+            </div>
+
+            <div class="about-grid" style="margin-top: 3rem;">
+                <div class="glass-panel" style="padding: 3rem;">
+                    <h3 style="font-family: var(--font-mythic); font-size: 1.5rem; margin-bottom: 1rem; color: var(--gold-lyre);">Conference Venue</h3>
+                    <p style="color: var(--text-ash); margin-bottom: 2rem;">Exact Location TBA<br>Istanbul, Türkiye</p>
+                    
+                    <h4 style="color: var(--text-marble); margin-bottom: 0.5rem;">Directions:</h4>
+                    <ul style="color: var(--text-ash); padding-left: 1.5rem; line-height: 1.8;">
+                        <li><strong>Metro:</strong> TBA</li>
+                        <li><strong>Bus:</strong> TBA</li>
+                        <li><strong>Parking:</strong> TBA</li>
+                    </ul>
+                </div>
+                
+                <!-- Real Google Maps Embed -->
+                <div class="mythos-img-wrapper" style="height: 100%; min-height: 350px; padding: 0; max-width: 100%;">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192697.79327438443!2d28.87209635072049!3d41.005495809772836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2sIstanbul%2C%20T%C3%BCrkiye!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; filter: grayscale(100%) invert(90%) contrast(1.2);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

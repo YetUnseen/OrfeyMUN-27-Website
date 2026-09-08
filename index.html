@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrfeyMun'27 | Echoes of Orpheus</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    
+    <canvas id="ambient-canvas"></canvas>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="brand-logo">
+                <i class="ph-fill ph-harp"></i>
+                <span>OrfeyMun<span class="highlight">'27</span></span>
+            </a>
+            
+           <div class="nav-links">
+        <a href="index.html#about" class="nav-link">The Mythos</a>
+        <a href="committees.html" class="nav-link">Committees</a>
+        <a href="venue.html" class="nav-link">Venue & Date</a>
+        <a href="index.html#faq" class="nav-link">Oracle (FAQ)</a>
+    </div>
+
+            <div class="nav-actions">
+                <a href="#register" class="btn btn-primary" id="registerBtn">Pre-Register</a>
+            </div>
+
+            <button class="mobile-toggle" aria-label="Toggle Menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero" id="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-content">
+            <div class="badge"><i class="ph ph-hourglass-high"></i> The Underworld Awaits | 2027</div>
+            <h1 class="hero-title">
+                The Power of Voice.<br>
+                <span class="gradient-text">Diplomacy Immortalized.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Inspired by the legend of Orpheus. Descend into the depths of debate, charm the pantheon of delegates, and rewrite history with the symphony of your arguments.
+            </p>
+            
+            <div class="hero-cta-group">
+                <a href="#committees" class="btn btn-primary btn-lg">View Committees <i class="ph ph-arrow-down"></i></a>
+                <a href="#about" class="btn btn-glass btn-lg">Read the Legend</a>
+            </div>
+        </div>
+    </header>
+
+   <section class="stats-section border-top border-bottom" id="logistics">
+        <div class="container stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="ph ph-calendar-blank"></i></div>
+                <h3 class="stat-number">TBA</h3>
+                <p class="stat-label">Dates (2027)</p>
+            </div>
+            
+            <a href="venue.html" class="stat-card" style="text-decoration: none; transition: var(--transition);">
+                <div class="stat-icon"><i class="ph ph-map-pin"></i></div>
+                <h3 class="stat-number">TBA</h3>
+                <p class="stat-label" style="color: var(--gold-lyre);">Venue Location &rarr;</p>
+            </a>
+
+            <div class="stat-card">
+                <div class="stat-icon"><i class="ph ph-users-three"></i></div>
+                <h3 class="stat-number">TBA</h3>
+                <p class="stat-label">Delegate Capacity</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section section-padding" id="about">
+        <div class="container about-grid">
+            
+            <div class="mythos-img-wrapper">
+                <svg class="mythos-svg-art" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3v12a6 6 0 0 0 12 0V3"></path>
+                    <path d="M6 3c0 4 3 6 6 6s6-2 6-6"></path>
+                    <path d="M10 9v9"></path>
+                    <path d="M14 9v9"></path>
+                    <path d="M9 21h6"></path>
+                </svg>
+            </div>
+
+            <div class="about-text">
+                <h2 class="section-title">The Legend of <span class="gradient-text">Orpheus</span></h2>
+                <p class="section-desc">
+                    In ancient Greek mythology, Orpheus was a bard whose music could charm stones, river gods, and even the rulers of the Underworld. At OrfeyMun'27, we believe diplomacy is an art form just as powerful as his lyre. 
+                </p>
+                <p class="section-desc" style="margin-top: 1rem;">
+                    Here, your words are your instrument. Whether you are navigating historical crises or shaping future policies, your voice has the power to bridge divides and bring light to the darkest of conflicts.
+                </p>
+                <a href="#committees" class="btn btn-outline" style="margin-top: 2rem;">Discover Your Stage</a>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="committees-section section-padding border-top" id="committees">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The <span class="gradient-text">Pantheon</span> (Committees)</h2>
+                <p class="section-desc">The agendas are currently being forged in the fires of Hephaestus. Check back soon for the official committee matrix.</p>
+            </div>
+
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All Realms</button>
+                <button class="filter-btn" data-filter="ga">General Assembly</button>
+                <button class="filter-btn" data-filter="specialized">Specialized</button>
+                <button class="filter-btn" data-filter="semi-crisis">Semi-Crisis</button>
+                <button class="filter-btn" data-filter="crisis">Crisis</<button>
+
+            </div>
+
+            <div class="committee-grid" id="committeeGrid">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer border-top" id="faq">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#hero" class="brand-logo">
+                    <i class="ph-fill ph-harp"></i>
+                    <span>OrfeyMun<span class="highlight">'27</span></span>
+                </a>
+                <p class="footer-desc">Harness the melody of diplomacy. A premium Model United Nations experience inspired by Ancient Greece.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>The Oracle</h4>
+                <a href="#logistics">Venue Details (TBA)</a>
+                <a href="#committees">Committee Matrix</a>
+                <a href="#register">Pre-Registration</a>
+                <a href="#">Code of Conduct</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="#">Instagram</a>
+                <a href="mailto:secretariat@orfeymun.com">Contact Secretariat</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2027 OrfeyMun. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
