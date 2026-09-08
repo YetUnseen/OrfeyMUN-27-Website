@@ -16,11 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `;
     document.body.appendChild(pageTransition);
-    pageTransition.classList.add('initial-opening');
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => pageTransition.classList.add('is-hidden'));
-    });
-    setTimeout(() => pageTransition.classList.remove('initial-opening'), 800);
+    const skipInitialOpening = window.location.hash === '#about';
+
+    if (skipInitialOpening) {
+        pageTransition.classList.add('is-hidden');
+    } else {
+        pageTransition.classList.add('initial-opening');
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => pageTransition.classList.add('is-hidden'));
+        });
+        setTimeout(() => pageTransition.classList.remove('initial-opening'), 800);
+    }
 
     const scrollToTarget = (target, updateHistory = true) => {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
