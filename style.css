@@ -376,6 +376,7 @@ a, button {
 .filter-btn:hover, .filter-btn.active { background: var(--gold-lyre); color: #000; border-color: var(--gold-lyre); }
 
 .committee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.committee-cta { display: flex; width: fit-content; margin: 2.5rem auto 0; }
 .committees-section .section-header { margin-bottom: 2.5rem; }
 .committees-section .filter-group { margin-bottom: 2rem; }
 .committees-section .committee-grid { margin-top: 0.5rem; }
