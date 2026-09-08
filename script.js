@@ -91,13 +91,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add touch feedback without affecting normal text selection.
+    // Add touch feedback and noticeable haptics to EVERY clickable element
     document.addEventListener('pointerdown', event => {
-        const control = event.target.closest('a, button');
+        // Catch links, buttons, inputs, labels, selects, and committee cards
+        const control = event.target.closest('a, button, input, label, select, summary, .committee-card, .glass-panel');
         if (!control || event.pointerType !== 'touch') return;
 
-        control.classList.add('touch-pressed');
-        if (navigator.vibrate) navigator.vibrate(75);
+        // Apply visual press state specifically for anchors and buttons
+        if (control.matches('a, button')) {
+            control.classList.add('touch-pressed');
+        }
+        
+        // Trigger noticeable 75ms vibration, UNLESS it's the mobile toggle 
+        // (which has its own special dual-pulse vibration on click to prevent overlapping bugs)
+        if (navigator.vibrate && !control.matches('.mobile-toggle')) {
+            navigator.vibrate(75);
+        }
     });
 
     ['pointerup', 'pointercancel', 'pointerleave'].forEach(eventName => {
