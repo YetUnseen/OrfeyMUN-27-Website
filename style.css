@@ -1,6 +1,6 @@
 :root {
-  --bg-primary: #050508;
-  --bg-secondary: #0a0a10;
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
   --bg-glass: rgba(207, 181, 59, 0.04);
   
   --text-marble: #f4f4f5;
@@ -429,7 +429,6 @@ a, button {
   font-family: var(--font-mythic);
   letter-spacing: 0.03em;
 }
-/* END NEW COMMITTEE CARD STYLES */
 
 .card-icon { font-size: 3rem; color: var(--text-ash); margin-bottom: 0.5rem; }
 .tba-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 4px; background: rgba(255, 255, 255, 0.05); color: var(--text-ash); text-transform: uppercase; letter-spacing: 0.1em; }
@@ -524,7 +523,6 @@ a, button {
   .nav-container { padding: 1rem 1.25rem; }
   .brand-logo { font-size: 1.15rem; }
   .brand-logo .highlight { font-size: 0.95rem; }
-  .nav-links, .nav-actions { display: none; }
   .mobile-toggle { display: block; }
   .section-padding { padding: 4rem 0; }
   .hero { min-height: 92svh; padding-top: 4.5rem; }
@@ -550,6 +548,36 @@ a, button {
   .footer-grid { gap: 2.5rem; }
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   .legal-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  
+  /* OLED SLEEK MOBILE MENU CSS */
+  .nav-actions { display: none; }
+  
+  .nav-links { 
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(16px) saturate(145%);
+    -webkit-backdrop-filter: blur(16px) saturate(145%);
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-15px);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links.mobile-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 }
 html { 
   scroll-behavior: smooth;

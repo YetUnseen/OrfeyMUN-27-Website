@@ -267,29 +267,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileToggle) {
         let isExpanded = false;
         mobileToggle.addEventListener('click', () => {
+            // Haptic feedback (crisp 50ms vibration)
+            if (navigator.vibrate) navigator.vibrate(50);
+            
             isExpanded = !isExpanded;
             if (isExpanded) {
                 mobileToggle.innerHTML = '<i class="ph ph-x"></i>';
-                Object.assign(navLinks.style, {
-                    display: 'flex', flexDirection: 'column', position: 'absolute',
-                    top: '100%', left: '0', width: '100%', background: 'rgba(8, 8, 12, 0.58)',
-                    padding: '2rem', borderBottom: '1px solid var(--border-color)',
-                    backdropFilter: 'blur(16px) saturate(145%)',
-                    WebkitBackdropFilter: 'blur(16px) saturate(145%)'
-                });
+                navLinks.classList.add('mobile-active');
             } else {
                 mobileToggle.innerHTML = '<i class="ph ph-list"></i>';
-                navLinks.style.display = 'none';
+                navLinks.classList.remove('mobile-active');
             }
         });
 
-        // Close menu when clicking a link
+        // Close menu with a slick fade out when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
                     isExpanded = false;
                     mobileToggle.innerHTML = '<i class="ph ph-list"></i>';
-                    navLinks.style.display = 'none';
+                    navLinks.classList.remove('mobile-active');
                 }
             });
         });
