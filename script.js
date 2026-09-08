@@ -225,6 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
+        let lightningTimer = 0;
+        let lightningFlash = 0;
+        let lightningX = 0;
+        let lightningHeight = 0;
 
         function resizeCanvas() {
             width = canvas.width = window.innerWidth;
@@ -295,6 +299,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.update();
                 p.draw();
             });
+
+            lightningTimer -= 16.67;
+            if (lightningTimer <= 0) {
+                lightningTimer = Math.random() * 6000 + 7000;
+                lightningFlash = 1;
+                lightningX = width * (Math.random() * 0.7 + 0.15);
+                lightningHeight = height * (Math.random() * 0.18 + 0.12);
+            }
+
+            if (lightningFlash > 0) {
+                const flashOpacity = lightningFlash * 0.16;
+
+                ctx.strokeStyle = `rgba(245, 220, 145, ${flashOpacity})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(lightningX, 0);
+                ctx.lineTo(lightningX - width * 0.012, lightningHeight * 0.35);
+                ctx.lineTo(lightningX + width * 0.01, lightningHeight * 0.58);
+                ctx.lineTo(lightningX - width * 0.006, lightningHeight);
+                ctx.stroke();
+
+                ctx.fillStyle = `rgba(245, 220, 145, ${flashOpacity * 0.18})`;
+                ctx.fillRect(0, 0, width, height);
+                lightningFlash -= 0.08;
+            }
+
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
