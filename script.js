@@ -98,6 +98,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    document.addEventListener('pointerdown', event => {
+        const panel = event.target.closest('.committee-detail-list > .glass-panel');
+        if (panel && event.target === panel) panel.classList.add('touch-held');
+    });
+
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(eventName => {
+        document.addEventListener(eventName, event => {
+            const panel = event.target.closest('.committee-detail-list > .glass-panel');
+            if (panel) panel.classList.remove('touch-held');
+        });
+    });
+
+    document.addEventListener('contextmenu', event => {
+        if (event.target.closest('.btn, .nav-link, .filter-btn, .mobile-toggle, .committee-detail-list > .glass-panel')) {
+            event.preventDefault();
+        }
+    });
+
     // Apply the same scroll motion when arriving through a page link or browser history.
     if (window.location.hash) {
         const initialTarget = document.querySelector(window.location.hash);
