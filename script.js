@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('click', event => {
-        const link = event.target.closest('a[href$=".html"], a[href*=".html#"]');
+        const link = event.target.closest('a[href$=".html"], a[href*=".html#"], a[href$="/"]');
         if (!link) return;
 
         const destination = new URL(link.href, window.location.href);
