@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!control || event.pointerType !== 'touch') return;
 
         control.classList.add('touch-pressed');
-        if (navigator.vibrate) navigator.vibrate(18);
+        if (navigator.vibrate) navigator.vibrate(25);
     });
 
     ['pointerup', 'pointercancel', 'pointerleave'].forEach(eventName => {
@@ -237,7 +237,8 @@ document.addEventListener('DOMContentLoaded', () => {
             committeeCta.href = 'committees/';
             committeeCta.className = 'btn btn-primary btn-lg committee-cta';
             committeeCta.textContent = 'Enter Committees';
-            committeeGrid.parentElement.appendChild(committeeCta);
+            const filterGroup = committeeGrid.parentElement.querySelector('.filter-group');
+            filterGroup.parentElement.insertBefore(committeeCta, filterGroup);
         }
     }
     renderCommittees(committeesJSON);
