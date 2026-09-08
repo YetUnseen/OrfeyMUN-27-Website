@@ -91,26 +91,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add touch feedback and noticeable haptics to EVERY clickable element
+    // Dynamic Haptic Feedback: Starts at 35ms on click, scales up to 90ms if held down
+    let holdTimeout = null;
     document.addEventListener('pointerdown', event => {
-        // Catch links, buttons, inputs, labels, selects, and committee cards
         const control = event.target.closest('a, button, input, label, select, summary, .committee-card, .glass-panel');
         if (!control || event.pointerType !== 'touch') return;
 
-        // Apply visual press state specifically for anchors and buttons
         if (control.matches('a, button')) {
             control.classList.add('touch-pressed');
         }
         
-        // Trigger noticeable 75ms vibration, UNLESS it's the mobile toggle 
-        // (which has its own special dual-pulse vibration on click to prevent overlapping bugs)
+        // Skip default haptics for mobile toggle (it has its own custom pattern)
         if (navigator.vibrate && !control.matches('.mobile-toggle')) {
-            navigator.vibrate(75);
+            // Immediate quick tap feedback (35ms)
+            navigator.vibrate(35);
+
+            // If held down longer, escalate vibration intensity up to 90ms
+            holdTimeout = setTimeout(() => {
+                if (navigator.vibrate) navigator.vibrate(90);
+            }, 300);
         }
     });
 
     ['pointerup', 'pointercancel', 'pointerleave'].forEach(eventName => {
         document.addEventListener(eventName, event => {
+            if (holdTimeout) {
+                clearTimeout(holdTimeout);
+                holdTimeout = null;
+            }
             const control = event.target.closest('a, button');
             if (control) control.classList.remove('touch-pressed');
         });
@@ -276,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileToggle) {
         let isExpanded = false;
         mobileToggle.addEventListener('click', () => {
-            // Stronger dual-pulse tactile haptic pattern (Pulse, pause, pulse)
             if (navigator.vibrate) navigator.vibrate([70, 35, 70]);
             
             isExpanded = !isExpanded;
@@ -289,7 +296,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close menu with a slick fade out when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
