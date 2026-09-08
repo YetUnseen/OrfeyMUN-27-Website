@@ -98,20 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.addEventListener('pointerdown', event => {
-        const panel = event.target.closest('.committee-detail-list > .glass-panel');
-        if (panel && event.target === panel) panel.classList.add('touch-held');
-    });
-
-    ['pointerup', 'pointercancel', 'pointerleave'].forEach(eventName => {
-        document.addEventListener(eventName, event => {
-            const panel = event.target.closest('.committee-detail-list > .glass-panel');
-            if (panel) panel.classList.remove('touch-held');
-        });
-    });
-
     document.addEventListener('contextmenu', event => {
-        if (event.target.closest('.btn, .nav-link, .filter-btn, .mobile-toggle, .committee-detail-list > .glass-panel')) {
+        if (event.target.closest('.btn, .nav-link, .filter-btn, .mobile-toggle')) {
             event.preventDefault();
         }
     });
@@ -233,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     display: 'flex', flexDirection: 'column', position: 'absolute',
                     top: '100%', left: '0', width: '100%', background: 'rgba(8, 8, 12, 0.58)',
                     padding: '2rem', borderBottom: '1px solid var(--border-color)',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.55)',
                     backdropFilter: 'blur(16px) saturate(145%)',
                     WebkitBackdropFilter: 'blur(16px) saturate(145%)'
                 });
