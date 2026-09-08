@@ -229,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let lightningFlash = 0;
         let lightningX = 0;
         let lightningHeight = 0;
+        let rainDrops = [];
 
         function resizeCanvas() {
             width = canvas.width = window.innerWidth;
@@ -283,11 +284,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function initParticles() {
             particles = [];
+            rainDrops = [];
             // Optimize count for mobile performance
             const particleArea = width < 768 ? 9000 : 6000;
             const particleCount = Math.floor((width * height) / particleArea);
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
+            }
+
+            const rainCount = width < 768 ? 45 : 90;
+            for (let i = 0; i < rainCount; i++) {
+                rainDrops.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    length: Math.random() * 14 + 8,
+                    speed: Math.random() * 5 + 7,
+                    opacity: Math.random() * 0.18 + 0.08
+                });
             }
         }
         initParticles();
@@ -300,16 +313,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.draw();
             });
 
+            ctx.lineWidth = 1;
+            rainDrops.forEach(drop => {
+                drop.y += drop.speed;
+                drop.x -= 0.8;
+                if (drop.y > height) {
+                    drop.y = -drop.length;
+                    drop.x = Math.random() * width;
+                }
+
+                ctx.strokeStyle = `rgba(180, 190, 205, ${drop.opacity})`;
+                ctx.beginPath();
+                ctx.moveTo(drop.x, drop.y);
+                ctx.lineTo(drop.x - 2, drop.y + drop.length);
+                ctx.stroke();
+            });
+
             lightningTimer -= 16.67;
             if (lightningTimer <= 0) {
-                lightningTimer = Math.random() * 6000 + 7000;
-                lightningFlash = 1;
+                lightningTimer = Math.random() * 2200 + 1400;
+                lightningFlash = 1.4;
                 lightningX = width * (Math.random() * 0.7 + 0.15);
-                lightningHeight = height * (Math.random() * 0.18 + 0.12);
+                lightningHeight = height * (Math.random() * 0.28 + 0.2);
             }
 
             if (lightningFlash > 0) {
-                const flashOpacity = lightningFlash * 0.16;
+                const flashOpacity = Math.min(lightningFlash, 1) * 0.28;
 
                 ctx.strokeStyle = `rgba(245, 220, 145, ${flashOpacity})`;
                 ctx.lineWidth = 1.5;
@@ -322,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 ctx.fillStyle = `rgba(245, 220, 145, ${flashOpacity * 0.18})`;
                 ctx.fillRect(0, 0, width, height);
-                lightningFlash -= 0.08;
+                lightningFlash -= 0.12;
             }
 
             requestAnimationFrame(animateParticles);
