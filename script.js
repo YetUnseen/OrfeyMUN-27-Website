@@ -104,6 +104,63 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // A restrained gold-dust layer for atmosphere; no lightning or rain.
+    const canvas = document.getElementById('ambient-canvas');
+    if (canvas) {
+        const context = canvas.getContext('2d');
+        let canvasWidth;
+        let canvasHeight;
+        let dust = [];
+
+        function resizeDustCanvas() {
+            canvasWidth = canvas.width = window.innerWidth;
+            canvasHeight = canvas.height = window.innerHeight;
+        }
+
+        function createDust() {
+            const dustCount = window.innerWidth < 768 ? 28 : 54;
+            dust = Array.from({ length: dustCount }, () => ({
+                x: Math.random() * canvasWidth,
+                y: Math.random() * canvasHeight,
+                radius: Math.random() * 1.4 + 0.45,
+                speed: Math.random() * 0.35 + 0.12,
+                drift: Math.random() * 0.35 - 0.175,
+                opacity: Math.random() * 0.38 + 0.18
+            }));
+        }
+
+        function animateDust() {
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+            dust.forEach(particle => {
+                particle.y -= particle.speed;
+                particle.x += particle.drift;
+
+                if (particle.y < -4) {
+                    particle.y = canvasHeight + 4;
+                    particle.x = Math.random() * canvasWidth;
+                }
+                if (particle.x < -4) particle.x = canvasWidth + 4;
+                if (particle.x > canvasWidth + 4) particle.x = -4;
+
+                context.fillStyle = `rgba(212, 175, 55, ${particle.opacity})`;
+                context.beginPath();
+                context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                context.fill();
+            });
+
+            requestAnimationFrame(animateDust);
+        }
+
+        resizeDustCanvas();
+        createDust();
+        window.addEventListener('resize', () => {
+            resizeDustCanvas();
+            createDust();
+        });
+        animateDust();
+    }
+
     // Apply the same scroll motion when arriving through a page link or browser history.
     if (window.location.hash) {
         const initialTarget = document.querySelector(window.location.hash);
