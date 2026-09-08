@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!control || event.pointerType !== 'touch') return;
 
         control.classList.add('touch-pressed');
-        if (navigator.vibrate) navigator.vibrate(25);
+        if (navigator.vibrate) navigator.vibrate(75);
     });
 
     ['pointerup', 'pointercancel', 'pointerleave'].forEach(eventName => {
@@ -215,44 +215,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
-   const committeesJSON = [
-        { id: 1, title: "Committee I", category: "ga", icon: "ph-shield-check" },
-        { id: 2, title: "Committee II", category: "ga", icon: "ph-scales" },
-        { id: 3, title: "Committee III", category: "ga", icon: "ph-globe-hemisphere-east" },
-        { id: 4, title: "Committee IV", category: "specialized", icon: "ph-lightning" },
-        { id: 5, title: "Committee V", category: "crisis", icon: "ph-sword" },
-        { id: 6, title: "Committee VI", category: "crisis", icon: "ph-skull" },
-    ];
-
+    // --- 2. Committee Section Setup & Filter Logic ---
     const committeeGrid = document.getElementById('committeeGrid');
-    function renderCommittees(data) {
-        if(committeeGrid) {
-            committeeGrid.innerHTML = '';
-            data.forEach(committee => {
-                const article = document.createElement('article');
-                article.className = 'committee-card glass-panel';
-                article.setAttribute('data-category', committee.category);
-                article.innerHTML = `
-                    <div class="card-icon"><i class="ph ${committee.icon}"></i></div>
-                    <span class="tba-badge">Topic TBA</span>
-                    <h3 style="margin: 0.5rem 0;">${committee.title}</h3>
-                    <p style="margin-bottom: 1.5rem; flex-grow: 1;">The architects are currently crafting the study guide for this realm. Details will be revealed soon.</p>
-                `;
-                committeeGrid.appendChild(article);
-            });
-
-            const committeeCta = document.createElement('a');
-            committeeCta.href = 'committees/';
-            committeeCta.className = 'btn btn-primary btn-lg committee-cta';
-            committeeCta.textContent = 'Enter Committees';
-            const filterGroup = committeeGrid.parentElement.querySelector('.filter-group');
+    
+    // Inject the 'Enter Committees' CTA button just before the filters, if the grid exists
+    if (committeeGrid && !document.querySelector('.committee-cta')) {
+        const committeeCta = document.createElement('a');
+        committeeCta.href = 'committees/';
+        committeeCta.className = 'btn btn-primary btn-lg committee-cta';
+        committeeCta.textContent = 'Enter Committees';
+        const filterGroup = committeeGrid.parentElement.querySelector('.filter-group');
+        if (filterGroup) {
             filterGroup.parentElement.insertBefore(committeeCta, filterGroup);
         }
     }
-    renderCommittees(committeesJSON);
 
-    // Filter Logic
+    // Filter Logic for HTML-rendered cards
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -265,6 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             newlyRenderedCards.forEach(card => {
                 const category = card.getAttribute('data-category');
+                
+                // Show 'all' or exactly the category clicked
                 if (filterValue === 'all' || filterValue === category) {
                     card.style.display = 'flex';
                     setTimeout(() => {

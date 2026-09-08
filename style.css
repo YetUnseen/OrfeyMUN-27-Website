@@ -26,7 +26,6 @@
   box-sizing: border-box;
 }
 
-
 body.dark-theme {
   background-color: var(--bg-primary);
   background-image:
@@ -380,13 +379,61 @@ a, button {
 .committees-section .section-header { margin-bottom: 2.5rem; }
 .committees-section .filter-group { margin-bottom: 2rem; }
 .committees-section .committee-grid { margin-top: 0.5rem; }
-.committee-card { position: relative; overflow: hidden; padding: 2.5rem; transition: transform 0.3s ease, border-color 0.3s ease; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
-.committee-card:hover { transform: translateY(-5px); border-color: var(--gold-lyre); }
-.card-icon { font-size: 3rem; color: var(--text-ash); margin-bottom: 0.5rem; }
 
+/* NEW COMMITTEE CARD STYLES */
+.committee-card { 
+  position: relative; 
+  overflow: hidden; 
+  padding: 2.5rem; 
+  transition: transform 0.3s ease, border-color 0.3s ease; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+  gap: 1rem; 
+  background: rgba(18, 17, 21, 0.4);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+.committee-card:hover { transform: translateY(-5px); border-color: var(--gold-lyre); }
+
+.committee-tag { 
+  display: inline-block; 
+  font-size: 0.75rem; 
+  font-weight: 700; 
+  padding: 0.4rem 1rem; 
+  border-radius: 999px; 
+  background: rgba(212, 175, 55, 0.1); 
+  color: var(--gold-lyre); 
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  text-transform: uppercase; 
+  letter-spacing: 0.1em; 
+  margin-bottom: 0.5rem; 
+}
+
+.committee-card h3.committee-title { 
+  font-family: var(--font-mythic); 
+  font-size: 1.5rem; 
+  font-weight: 700; 
+  color: var(--text-marble); 
+}
+
+.committee-agenda { 
+  color: var(--text-ash); 
+  font-size: 0.95rem; 
+  line-height: 1.6;
+}
+.committee-agenda strong {
+  color: var(--gold-lyre);
+  font-weight: 600;
+  font-family: var(--font-mythic);
+  letter-spacing: 0.03em;
+}
+/* END NEW COMMITTEE CARD STYLES */
+
+.card-icon { font-size: 3rem; color: var(--text-ash); margin-bottom: 0.5rem; }
 .tba-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 4px; background: rgba(255, 255, 255, 0.05); color: var(--text-ash); text-transform: uppercase; letter-spacing: 0.1em; }
-.committee-card h3 { font-family: var(--font-mythic); font-size: 1.75rem; font-weight: 600; color: var(--text-marble); }
-.committee-card p { color: var(--text-ash); font-size: 0.95rem; }
+
 
 .footer { background: var(--bg-secondary); padding-top: 5rem; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
@@ -411,8 +458,7 @@ a, button {
 }
 
 .committees-page {
-  background:
-    var(--bg-primary);
+  background: var(--bg-primary);
 }
 
 .committees-page-section {
