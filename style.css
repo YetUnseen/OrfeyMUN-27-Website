@@ -166,6 +166,24 @@ h1, h2, h3, h4 {
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.14);
 }
 
+.hero-title,
+.section-title {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-title::after,
+.section-title::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 12% 14%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  filter: blur(22px);
+  pointer-events: none;
+}
+
 .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 .section-padding { padding: 6rem 0; }
 .border-top { border-top: 1px solid var(--border-color); }
