@@ -197,11 +197,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 mobileToggle.innerHTML = '<i class="ph ph-x"></i>';
                 Object.assign(navLinks.style, {
                     display: 'flex', flexDirection: 'column', position: 'absolute',
-                    top: '100%', left: '0', width: '100%', background: 'rgba(8, 8, 12, 0.86)',
+                    top: '100%', left: '0', width: '100%', background: 'rgba(8, 8, 12, 0.58)',
                     padding: '2rem', borderBottom: '1px solid var(--border-color)',
                     boxShadow: '0 10px 30px rgba(0,0,0,0.55)',
-                    backdropFilter: 'blur(20px) saturate(135%)',
-                    WebkitBackdropFilter: 'blur(20px) saturate(135%)'
+                    backdropFilter: 'blur(16px) saturate(145%)',
+                    WebkitBackdropFilter: 'blur(16px) saturate(145%)'
                 });
             } else {
                 mobileToggle.innerHTML = '<i class="ph ph-list"></i>';
