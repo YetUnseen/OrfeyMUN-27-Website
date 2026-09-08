@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!control || event.pointerType !== 'touch') return;
 
         control.classList.add('touch-pressed');
-        if (navigator.vibrate) navigator.vibrate(12);
+        if (navigator.vibrate) navigator.vibrate(18);
     });
 
     ['pointerup', 'pointercancel', 'pointerleave'].forEach(eventName => {
@@ -241,10 +241,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
+            const selectedButton = e.currentTarget;
             filterBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
+            selectedButton.classList.add('active');
             
-            const filterValue = e.target.getAttribute('data-filter');
+            const filterValue = selectedButton.getAttribute('data-filter');
             const newlyRenderedCards = document.querySelectorAll('.committee-card');
             
             newlyRenderedCards.forEach(card => {
