@@ -6,19 +6,21 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="transition-door transition-door-left"></div>
         <div class="transition-door transition-door-right"></div>
         <div class="transition-lyre" aria-hidden="true">
-            <svg class="transition-lyre-art" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 3v12a6 6 0 0 0 12 0V3"></path>
-                <path d="M6 3c0 4 3 6 6 6s6-2 6-6"></path>
-                <g stroke-width="0.55">
-                    <path d="M9.2 9v9"></path>
-                    <path d="M10.15 9v9"></path>
-                    <path d="M11.1 9v9"></path>
-                    <path d="M12.05 9v9"></path>
-                    <path d="M13 9v9"></path>
-                    <path d="M13.95 9v9"></path>
-                    <path d="M14.8 9v9"></path>
+            <svg class="transition-lyre-art" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 4c-3 3-2.5 12 1 16 1.2 1.4 2.7 2.2 5 2.8"></path>
+                <path d="M19 4c3 3 2.5 12-1 16-1.2 1.4-2.7 2.2-5 2.8"></path>
+                <path d="M5 4c0-1.5 1.3-2.5 2.6-2.1 1.1.3 1.7 1.5 1.1 2.5-.5.9-1.8 1.1-2.6.4"></path>
+                <path d="M19 4c0-1.5-1.3-2.5-2.6-2.1-1.1.3-1.7 1.5-1.1 2.5.5.9 1.8 1.1 2.6.4"></path>
+                <path d="M4 7h16"></path>
+                <path d="M8 22c0-2 1.5-3 4-3s4 1 4 3v3H8z"></path>
+                <path d="M9 25h6"></path>
+                <g stroke-width="0.5">
+                    <path d="M9.5 7v15"></path>
+                    <path d="M10.75 7v15"></path>
+                    <path d="M12 7v15"></path>
+                    <path d="M13.25 7v15"></path>
+                    <path d="M14.5 7v15"></path>
                 </g>
-                <path d="M9 21h6"></path>
             </svg>
         </div>
     `;
