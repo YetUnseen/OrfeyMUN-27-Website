@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `;
     document.body.appendChild(pageTransition);
-    const skipInitialOpening = window.location.hash === '#about';
+    const isScrollDestination = ['#about', '#faq'].includes(window.location.hash.toLowerCase());
+    const skipInitialOpening = isScrollDestination;
 
     if (skipInitialOpening) {
         pageTransition.classList.add('is-hidden');
@@ -107,8 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (
             destination.origin !== window.location.origin ||
             destination.pathname === window.location.pathname ||
-            destination.hash === '#faq' ||
-            destination.hash === '#about'
+            ['#about', '#faq'].includes(destination.hash.toLowerCase())
         ) return;
 
         event.preventDefault();
