@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Use a consistent, slower animation for in-page navigation.
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', event => {
             const targetId = link.getAttribute('href');
@@ -91,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Dynamic Haptic Feedback: Starts at 35ms on click, scales up to 90ms if held down
     let holdTimeout = null;
     document.addEventListener('pointerdown', event => {
         const control = event.target.closest('a, button, input, label, select, summary, .committee-card, .glass-panel');
@@ -101,12 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
             control.classList.add('touch-pressed');
         }
         
-        // Skip default haptics for mobile toggle (it has its own custom pattern)
         if (navigator.vibrate && !control.matches('.mobile-toggle')) {
-            // Immediate quick tap feedback (35ms)
             navigator.vibrate(35);
 
-            // If held down longer, escalate vibration intensity up to 90ms
             holdTimeout = setTimeout(() => {
                 if (navigator.vibrate) navigator.vibrate(90);
             }, 300);
@@ -130,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // A restrained gold-dust layer for atmosphere; no lightning or rain.
     const canvas = document.getElementById('ambient-canvas');
     if (canvas) {
         const context = canvas.getContext('2d');
@@ -187,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
         animateDust();
     }
 
-    // Apply the same scroll motion when arriving through a page link or browser history.
     if (window.location.hash) {
         const initialTarget = document.querySelector(window.location.hash);
         if (initialTarget) {
@@ -222,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { window.location.href = destination.href; }, 1000);
     });
     
-    // --- 1. Opaque Navbar Scroll Logic ---
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -232,10 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 2. Committee Section Setup & Filter Logic ---
     const committeeGrid = document.getElementById('committeeGrid');
-    
-    // Inject the 'Enter Committees' CTA button just before the filters, if the grid exists
     if (committeeGrid && !document.querySelector('.committee-cta')) {
         const committeeCta = document.createElement('a');
         committeeCta.href = 'committees/';
@@ -247,11 +236,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Filter Logic for HTML-rendered cards
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             const selectedButton = e.currentTarget;
+            filterBtns.filter = selectedButton.getAttribute('data-filter');
             filterBtns.forEach(b => b.classList.remove('active'));
             selectedButton.classList.add('active');
             
@@ -261,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
             newlyRenderedCards.forEach(card => {
                 const category = card.getAttribute('data-category');
                 
-                // Show 'all' or exactly the category clicked
                 if (filterValue === 'all' || filterValue === category) {
                     card.style.display = 'flex';
                     setTimeout(() => {
@@ -277,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3. Mobile Menu Toggle with Stronger Dual-Pulse Haptic ---
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
     
