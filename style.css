@@ -190,9 +190,9 @@ body.is-anchor-scrolling::after {
 }
 
 .glass-panel {
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(20, 19, 22, 0.58);
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
   border: 1px solid var(--border-color);
   border-radius: 12px;
 }
@@ -202,9 +202,9 @@ body.is-anchor-scrolling::after {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(5, 5, 8, 0.78);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(8, 8, 12, 0.72);
+  backdrop-filter: blur(20px) saturate(135%);
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
   border-bottom: 1px solid transparent;
   z-index: 9999;
   transition: var(--transition);

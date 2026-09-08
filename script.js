@@ -197,9 +197,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 mobileToggle.innerHTML = '<i class="ph ph-x"></i>';
                 Object.assign(navLinks.style, {
                     display: 'flex', flexDirection: 'column', position: 'absolute',
-                    top: '100%', left: '0', width: '100%', background: 'var(--bg-primary)',
+                    top: '100%', left: '0', width: '100%', background: 'rgba(8, 8, 12, 0.86)',
                     padding: '2rem', borderBottom: '1px solid var(--border-color)',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.9)'
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.55)',
+                    backdropFilter: 'blur(20px) saturate(135%)',
+                    WebkitBackdropFilter: 'blur(20px) saturate(135%)'
                 });
             } else {
                 mobileToggle.innerHTML = '<i class="ph ph-list"></i>';
@@ -229,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let lightningX = 0;
         let lightningHeight = 0;
         let lightningBranches = [];
+        let lightningSecondary = [];
         let rainDrops = [];
 
         function resizeCanvas() {
@@ -311,16 +314,28 @@ document.addEventListener('DOMContentLoaded', () => {
             lightningX = width * (Math.random() * 0.7 + 0.15);
             lightningHeight = height * (Math.random() * 0.28 + 0.2);
             lightningBranches = [];
+            lightningSecondary = [];
 
             let branchX = lightningX;
             let branchY = 0;
-            const segmentCount = 7;
+            const segmentCount = Math.floor(Math.random() * 5) + 7;
 
             for (let index = 0; index < segmentCount; index++) {
-                branchX += (Math.random() - 0.5) * width * 0.035;
-                branchY += lightningHeight / segmentCount;
+                branchX += (Math.random() - 0.5) * width * (Math.random() * 0.05 + 0.025);
+                branchY += lightningHeight / segmentCount * (Math.random() * 0.35 + 0.82);
                 lightningBranches.push({ x: branchX, y: branchY });
             }
+
+            lightningBranches.forEach((point, index) => {
+                if (index < 2 || index > lightningBranches.length - 3 || Math.random() < 0.35) return;
+
+                lightningSecondary.push({
+                    startX: point.x,
+                    startY: point.y,
+                    endX: point.x + (Math.random() - 0.5) * width * 0.13,
+                    endY: point.y + lightningHeight * (Math.random() * 0.16 + 0.08)
+                });
+            });
         }
 
         window.addEventListener('pointerdown', event => {
@@ -353,21 +368,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (lightningFlash > 0) {
                 const flashOpacity = Math.min(lightningFlash, 1) * 0.28;
 
-                ctx.strokeStyle = `rgba(245, 220, 145, ${flashOpacity})`;
-                ctx.lineWidth = 2;
+                ctx.shadowBlur = 18;
+                ctx.shadowColor = `rgba(245, 198, 75, ${flashOpacity})`;
+                ctx.strokeStyle = `rgba(255, 238, 174, ${flashOpacity})`;
+                ctx.lineWidth = 3.5;
                 ctx.beginPath();
                 ctx.moveTo(lightningX, 0);
                 lightningBranches.forEach(point => ctx.lineTo(point.x, point.y));
                 ctx.stroke();
 
-                lightningBranches.forEach((point, index) => {
-                    if (index < 2 || index > lightningBranches.length - 2) return;
-
+                ctx.lineWidth = 1.8;
+                lightningSecondary.forEach(branch => {
                     ctx.beginPath();
-                    ctx.moveTo(point.x, point.y);
-                    ctx.lineTo(point.x + (Math.random() - 0.5) * width * 0.06, point.y + lightningHeight * 0.12);
+                    ctx.moveTo(branch.startX, branch.startY);
+                    ctx.lineTo(branch.endX, branch.endY);
                     ctx.stroke();
                 });
+                ctx.shadowBlur = 0;
 
                 ctx.fillStyle = `rgba(245, 220, 145, ${flashOpacity * 0.18})`;
                 ctx.fillRect(0, 0, width, height);
