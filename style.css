@@ -370,7 +370,7 @@ a, button {
 
 .mythos-logo-img {
   width: 100%;
-  max-width: 320px;
+  max-width: 530px;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.25));
