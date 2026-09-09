@@ -99,11 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
             control.classList.add('touch-pressed');
         }
         
+        // --- PIXEL HAPTICS UPDATE ---
         if (navigator.vibrate && !control.matches('.mobile-toggle')) {
-            navigator.vibrate(35);
+            // Ultra-short 10ms burst for a crisp mechanical "click"
+            navigator.vibrate(10); 
 
             holdTimeout = setTimeout(() => {
-                if (navigator.vibrate) navigator.vibrate(90);
+                // Slightly heavier 15ms bump to signal a successful long-press
+                if (navigator.vibrate) navigator.vibrate(15); 
             }, 300);
         }
     });
@@ -239,6 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
+            // --- PIXEL HAPTICS UPDATE ---
+            // Crisp click when successfully swapping tabs/filters
+            if (navigator.vibrate) navigator.vibrate(10);
+
             const selectedButton = e.currentTarget;
             filterBtns.filter = selectedButton.getAttribute('data-filter');
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -271,7 +278,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileToggle) {
         let isExpanded = false;
         mobileToggle.addEventListener('click', () => {
-            if (navigator.vibrate) navigator.vibrate([70, 35, 70]);
+            // --- PIXEL HAPTICS UPDATE ---
+            // Quick 12ms double-tick (click, 40ms pause, click) for a satisfying mechanical toggle
+            if (navigator.vibrate) navigator.vibrate([12, 40, 12]);
             
             isExpanded = !isExpanded;
             if (isExpanded) {
