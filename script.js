@@ -301,6 +301,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // Close menu if clicking outside of the nav links or toggle button
+        document.addEventListener('click', (event) => {
+            if (isExpanded && !navLinks.contains(event.target) && !mobileToggle.contains(event.target)) {
+                isExpanded = false;
+                mobileToggle.innerHTML = '<i class="ph ph-list"></i>';
+                navLinks.classList.remove('mobile-active');
+            }
+        });
     }
 
 });
