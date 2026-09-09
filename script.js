@@ -100,12 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
             control.classList.add('touch-pressed');
         }
         
-        // --- SELECTIVE HAPTICS UPDATE ---
-        // Only trigger haptics if the element is a primary CTA, navbar link, or specific page link
         const isHapticTarget = control.matches('.btn, .nav-links a, a[href*="committees"], a[href*="venue"]');
         
-        // Ensure we don't double-vibrate on the mobile toggle or filter buttons 
-        // (they have their own click haptics further down)
         if (navigator.vibrate && isHapticTarget && !control.matches('.mobile-toggle, .filter-btn')) {
             navigator.vibrate(10); 
 
@@ -279,7 +275,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (mobileToggle) {
         let isExpanded = false;
-        mobileToggle.addEventListener('click', () => {
+        mobileToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // <--- This prevents the immediate closure bug
             if (navigator.vibrate) navigator.vibrate([12, 40, 12]);
             
             isExpanded = !isExpanded;
@@ -302,9 +299,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Close menu if clicking outside of the nav links or toggle button
+        // Close menu if clicking outside of the nav links
         document.addEventListener('click', (event) => {
-            if (isExpanded && !navLinks.contains(event.target) && !mobileToggle.contains(event.target)) {
+            if (isExpanded && !navLinks.contains(event.target)) {
                 isExpanded = false;
                 mobileToggle.innerHTML = '<i class="ph ph-list"></i>';
                 navLinks.classList.remove('mobile-active');
