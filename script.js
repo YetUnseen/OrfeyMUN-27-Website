@@ -95,17 +95,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const control = event.target.closest('a, button, input, label, select, summary, .committee-card, .glass-panel');
         if (!control || event.pointerType !== 'touch') return;
 
+        // Keep visual touch feedback for everything so the site feels responsive
         if (control.matches('a, button')) {
             control.classList.add('touch-pressed');
         }
         
-        // --- PIXEL HAPTICS UPDATE ---
-        if (navigator.vibrate && !control.matches('.mobile-toggle')) {
-            // Ultra-short 10ms burst for a crisp mechanical "click"
+        // --- SELECTIVE HAPTICS UPDATE ---
+        // Only trigger haptics if the element is a primary CTA, navbar link, or specific page link
+        const isHapticTarget = control.matches('.btn, .nav-links a, a[href*="committees"], a[href*="venue"]');
+        
+        // Ensure we don't double-vibrate on the mobile toggle or filter buttons 
+        // (they have their own click haptics further down)
+        if (navigator.vibrate && isHapticTarget && !control.matches('.mobile-toggle, .filter-btn')) {
             navigator.vibrate(10); 
 
             holdTimeout = setTimeout(() => {
-                // Slightly heavier 15ms bump to signal a successful long-press
                 if (navigator.vibrate) navigator.vibrate(15); 
             }, 300);
         }
@@ -242,8 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            // --- PIXEL HAPTICS UPDATE ---
-            // Crisp click when successfully swapping tabs/filters
             if (navigator.vibrate) navigator.vibrate(10);
 
             const selectedButton = e.currentTarget;
@@ -278,8 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileToggle) {
         let isExpanded = false;
         mobileToggle.addEventListener('click', () => {
-            // --- PIXEL HAPTICS UPDATE ---
-            // Quick 12ms double-tick (click, 40ms pause, click) for a satisfying mechanical toggle
             if (navigator.vibrate) navigator.vibrate([12, 40, 12]);
             
             isExpanded = !isExpanded;
