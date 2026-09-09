@@ -95,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const control = event.target.closest('a, button, input, label, select, summary, .committee-card, .glass-panel');
         if (!control || event.pointerType !== 'touch') return;
 
-        // Keep visual touch feedback for everything so the site feels responsive
         if (control.matches('a, button')) {
             control.classList.add('touch-pressed');
         }
@@ -276,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileToggle) {
         let isExpanded = false;
         mobileToggle.addEventListener('click', (event) => {
-            event.stopPropagation(); // <--- This prevents the immediate closure bug
+            event.stopPropagation(); 
             if (navigator.vibrate) navigator.vibrate([12, 40, 12]);
             
             isExpanded = !isExpanded;
@@ -299,7 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Close menu if clicking outside of the nav links
         document.addEventListener('click', (event) => {
             if (isExpanded && !navLinks.contains(event.target)) {
                 isExpanded = false;
