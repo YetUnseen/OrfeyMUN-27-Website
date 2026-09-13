@@ -92,14 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let holdTimeout = null;
     document.addEventListener('pointerdown', event => {
-        const control = event.target.closest('a, button, input, label, select, summary, .committee-card, .glass-panel');
+        const control = event.target.closest('a, button, input, label, select, summary, .committee-card, .apply-card, .glass-panel');
         if (!control || event.pointerType !== 'touch') return;
 
         if (control.matches('a, button')) {
             control.classList.add('touch-pressed');
         }
         
-        const isHapticTarget = control.matches('.btn, .nav-links a, a[href*="committees"], a[href*="venue"]');
+        // Added the a[href*="apply"] target here
+        const isHapticTarget = control.matches('.btn, .nav-links a, a[href*="committees"], a[href*="venue"], a[href*="apply"]');
         
         if (navigator.vibrate && isHapticTarget && !control.matches('.mobile-toggle, .filter-btn')) {
             navigator.vibrate(10); 
@@ -239,40 +240,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            if (navigator.vibrate) navigator.vibrate(10);
+    if (filterBtns.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (navigator.vibrate) navigator.vibrate(10);
 
-            const selectedButton = e.currentTarget;
-            filterBtns.filter = selectedButton.getAttribute('data-filter');
-            filterBtns.forEach(b => b.classList.remove('active'));
-            selectedButton.classList.add('active');
-            
-            const filterValue = selectedButton.getAttribute('data-filter');
-            const newlyRenderedCards = document.querySelectorAll('.committee-card');
-            
-            newlyRenderedCards.forEach(card => {
-                const category = card.getAttribute('data-category');
+                const selectedButton = e.currentTarget;
+                filterBtns.filter = selectedButton.getAttribute('data-filter');
+                filterBtns.forEach(b => b.classList.remove('active'));
+                selectedButton.classList.add('active');
                 
-                if (filterValue === 'all' || filterValue === category) {
-                    card.style.display = 'flex';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 10);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(10px)';
-                    setTimeout(() => { card.style.display = 'none'; }, 300);
-                }
+                const filterValue = selectedButton.getAttribute('data-filter');
+                const newlyRenderedCards = document.querySelectorAll('.committee-card');
+                
+                newlyRenderedCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || filterValue === category) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(10px)';
+                        setTimeout(() => { card.style.display = 'none'; }, 300);
+                    }
+                });
             });
         });
-    });
+    }
 
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    if (mobileToggle) {
+    if (mobileToggle && navLinks) {
         let isExpanded = false;
         mobileToggle.addEventListener('click', (event) => {
             event.stopPropagation(); 

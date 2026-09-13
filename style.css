@@ -155,7 +155,7 @@ body.is-anchor-scrolling::after {
   }
 }
 
-.hero-content, .stats-section, .about-section, .committees-section, .footer {
+.hero-content, .stats-section, .about-section, .committees-section, .apply-section, .footer {
   position: relative;
   z-index: 10;
   scroll-margin-top: 100px;
@@ -516,12 +516,21 @@ a, button {
   transition: var(--transition); 
   opacity: 0.9; 
   display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .social-row a:hover { 
   color: var(--gold-lyre); 
   opacity: 1; 
   transform: translateY(-2px); 
+}
+
+.social-handle {
+  font-size: 0.95rem;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  margin-left: 0.4rem;
 }
 
 @keyframes hero-arrival {
@@ -535,22 +544,22 @@ a, button {
   .badge { animation: none; }
 }
 
-.committees-page {
+.committees-page, .apply-page {
   background: var(--bg-primary);
 }
 
-.committees-page-section {
+.committees-page-section, .apply-page-section {
   min-height: 100vh;
   padding-top: 10rem;
 }
 
-.committees-page .section-header {
+.committees-page .section-header, .apply-page .section-header {
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.committees-page .section-header .hero-title {
+.committees-page .section-header .hero-title, .apply-page .section-header .hero-title {
   font-size: clamp(3rem, 7vw, 5rem);
 }
 
@@ -585,6 +594,29 @@ a, button {
 
 .committees-page .committee-detail-list > .glass-panel > div:last-child {
   background: rgba(0, 0, 0, 0.28) !important;
+}
+
+.apply-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 4rem auto 0;
+}
+
+.apply-card {
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.apply-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold-lyre);
 }
 
 @media (max-width: 992px) {
@@ -626,12 +658,13 @@ a, button {
   .filter-btn { flex: 0 0 auto; min-height: 2.75rem; white-space: nowrap; }
   .committee-grid { grid-template-columns: 1fr; gap: 1rem; }
   .committee-card { padding: 2rem 1.25rem; }
-  .committees-page-section { padding-top: 7rem; }
+  .committees-page-section, .apply-page-section { padding-top: 7rem; }
   .committee-detail-list { gap: 1rem; }
   .committee-detail-list > .glass-panel { padding: 1.5rem !important; }
   .committee-detail-list > .glass-panel > div:first-child { align-items: stretch !important; }
   .committee-detail-list > .glass-panel .btn { width: 100%; }
   .committee-detail-list > .glass-panel ul { gap: 0.75rem !important; }
+  .apply-card { padding: 2rem 1.5rem; }
   .mythos-img-wrapper { padding: 2rem 1rem; }
   
   .footer { padding-top: 4rem; }
