@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTERPOL | OrfeyMun'27</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../images/logo.png">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body class="dark-theme">
+    
+    <canvas id="ambient-canvas"></canvas>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../../#hero" class="brand-logo">
+                <i class="ph-fill ph-harp"></i>
+                <span>OrfeyMun<span class="highlight">'27</span></span>
+            </a>
+            
+           <div class="nav-links">
+                <a href="../../#about" class="nav-link">The Mythos</a>
+                <a href="../../committees/" class="nav-link">Committees</a>
+                <a href="../../apply/" class="nav-link">Apply</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="../../apply/" class="btn btn-primary">Apply</a>
+            </div>
+
+            <button class="mobile-toggle" aria-label="Toggle Menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero" style="min-height: 60vh; padding-top: 8rem; align-items: flex-end; padding-bottom: 4rem; border-bottom: 1px solid var(--border-color);">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-content" style="align-items: flex-start; text-align: left;">
+            <a href="../" class="nav-link" style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;"><i class="ph ph-arrow-left"></i> Back to Committees</a>
+            <div class="badge" style="margin-bottom: 1rem;">International Criminal Police (Intermediate)</div>
+            <h1 class="hero-title" style="font-size: clamp(2.5rem, 6vw, 4.5rem);">
+                Global <span class="gradient-text">INTERPOL</span>
+            </h1>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; align-items: start;">
+                <div class="glass-panel" style="padding: 2.5rem; border-radius: 12px; display: flex; flex-direction: column;">
+                    <h2 style="font-family: var(--font-mythic); color: var(--gold-lyre); margin-bottom: 1rem; font-size: 1.75rem;">Agenda Overview</h2>
+                    <p style="color: var(--text-marble); line-height: 1.8; margin-bottom: 1.5rem;">
+                        The Global Manhunt for Osama bin Laden: Investigating the 9/11 Attacks and Disrupting Al-Qaeda’s International Terrorist Network.
+                    </p>
+                    <p style="color: var(--text-ash); line-height: 1.8;">
+                        Delegates will assume the roles of international intelligence and law enforcement agencies. Focus will be placed on intelligence sharing, international warrants, and neutralizing one of the largest threats to global security.
+                    </p>
+                </div>
+
+                <div class="glass-panel" style="padding: 2.5rem; border-radius: 12px; display: flex; flex-direction: column;">
+                    <h2 style="font-family: var(--font-mythic); color: var(--gold-lyre); margin-bottom: 1.5rem; font-size: 1.75rem;">Study Guide</h2>
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        
+                    </div>
+                        <div>
+                            <h4 style="color: var(--text-marble); margin-bottom: 0.25rem;">Official Study Guide</h4>
+                            <p style="color: var(--text-ash); font-size: 0.85rem;">PDF Document (Status: To Be Released)</p>
+                        </div>
+                        <button class="btn btn-outline" disabled style="opacity: 0.5; cursor: not-allowed;">Pending</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer border-top" id="faq">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="../../#hero" class="brand-logo"><i class="ph-fill ph-harp"></i><span>OrfeyMun<span class="highlight">'27</span></span></a>
+                <p class="footer-desc">"Even the gods listen to those who speak."<br><br>&copy ; 2027 OrfeyMun.<br>All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Conference</h4>
+                <a href="../../#about">The Mythos</a>
+                <a href="../../venue/">Venue & Date</a>
+                <a href="../../apply/">Apply</a>
+            </div>
+            <div class="footer-links">
+                <h4>Social</h4>
+                <div class="social-row">
+                    <a href="https://instagram.com/orfeymun" target="_blank"><i class="ph ph-instagram-logo"></i><span class="social-handle">@orfeymun</span></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+</body>
+</html>

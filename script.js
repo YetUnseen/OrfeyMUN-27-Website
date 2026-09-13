@@ -227,18 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const committeeGrid = document.getElementById('committeeGrid');
-    if (committeeGrid && !document.querySelector('.committee-cta')) {
-        const committeeCta = document.createElement('a');
-        committeeCta.href = 'committees/';
-        committeeCta.className = 'btn btn-primary btn-lg committee-cta';
-        committeeCta.textContent = 'Enter Committees';
-        const filterGroup = committeeGrid.parentElement.querySelector('.filter-group');
-        if (filterGroup) {
-            filterGroup.parentElement.insertBefore(committeeCta, filterGroup);
-        }
-    }
-
     const filterBtns = document.querySelectorAll('.filter-btn');
     if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
@@ -311,3 +299,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+/* =========================================
+       MODAL LOGIC (SECRETARIAT / ORACLE)
+    ========================================= */
+    const modalTriggers = document.querySelectorAll('[data-modal-target]');
+    const modalOverlays = document.querySelectorAll('.modal-overlay');
+    const modalCloses = document.querySelectorAll('.modal-close');
+
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = trigger.getAttribute('data-modal-target');
+            const modal = document.getElementById(targetId);
+            
+            if (modal) {
+                if (navigator.vibrate) navigator.vibrate(15);
+                modal.classList.add('is-active');
+                document.body.classList.add('modal-open');
+            }
+        });
+    });
+
+    // Close logic
+    const closeModal = (modal) => {
+        if (navigator.vibrate) navigator.vibrate(10);
+        modal.classList.remove('is-active');
+        document.body.classList.remove('modal-open');
+    };
+
+    modalCloses.forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+            const modal = closeBtn.closest('.modal-overlay');
+            if (modal) closeModal(modal);
+        });
+    });
+
+    // Close on overlay click
+    modalOverlays.forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            // Ensure click is exactly on overlay, not inner content
+            if (e.target === overlay) closeModal(overlay);
+        });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const activeModal = document.querySelector('.modal-overlay.is-active');
+            if (activeModal) closeModal(activeModal);
+        }
+    });

@@ -3,236 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Committees | orfeymun'27</title>
+    <title>Committees | OrfeyMun'27</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/logo.png">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
-<body class="dark-theme subpage committees-page">
+<body class="dark-theme committees-page">
     
     <canvas id="ambient-canvas"></canvas>
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="../index.html" class="brand-logo">
+            <a href="../#hero" class="brand-logo">
                 <i class="ph-fill ph-harp"></i>
                 <span>OrfeyMun<span class="highlight">'27</span></span>
             </a>
-            <div class="nav-links">
-                <a href="../index.html#about" class="nav-link">The Mythos</a>
-                <a href="../committees/" class="nav-link" style="color: var(--gold-lyre);">Committees</a>
+            
+           <div class="nav-links">
+                <a href="../#about" class="nav-link">The Mythos</a>
+                <a href="../committees/" class="nav-link">Committees</a>
                 <a href="../venue/" class="nav-link">Venue & Date</a>
-                <a href="../index.html#faq" class="nav-link">Oracle (FAQ)</a>
+                <a href="../apply/" class="nav-link">Apply</a>
+                <a href="../#faq" class="nav-link">Oracle (FAQ)</a>
             </div>
+
             <div class="nav-actions">
-                <a href="../index.html#register" class="btn btn-primary">Pre-Register</a>
+                <a href="../apply/" class="btn btn-primary" id="registerBtn">Apply</a>
             </div>
+
             <button class="mobile-toggle" aria-label="Toggle Menu">
                 <i class="ph ph-list"></i>
             </button>
         </div>
     </nav>
 
-    <section class="section-padding committees-page-section">
+    <section class="committees-section section-padding" style="padding-top: 10rem; min-height: 100vh;">
         <div class="container">
             <div class="section-header">
-                <h1 class="hero-title">The <span class="gradient-text">Pantheon</span></h1>
-                <p class="section-desc">Study guides and detailed agendas for the upcoming debates.</p>
+                <div class="badge" style="margin-bottom: 1.5rem;"><i class="ph ph-bank"></i> The Realms</div>
+                <h1 class="hero-title" style="font-size: clamp(3rem, 7vw, 4.5rem);">The <span class="gradient-text">Pantheon</span></h1>
+                <p class="section-desc" style="margin-top: 1rem;">Select a realm to access agendas and study guides.</p>
             </div>
 
-            <div class="committee-detail-list">
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All Realms</button>
+                <button class="filter-btn" data-filter="beginner">Beginner</button>
+                <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                <button class="filter-btn" data-filter="expert">Expert</button>
+            </div>
+
+            <div class="committee-grid" id="committeeGrid">
                 
-                <!-- HCC — First Balkan War -->
-                <div class="glass-panel" style="padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <span class="badge" style="margin-bottom: 1rem; border-color: #ef4444; color: #ef4444; background: rgba(239, 68, 68, 0.1);">Expert</span>
-                            <h2 style="font-family: var(--font-mythic); font-size: 2.5rem;">HCC — First Balkan War</h2>
-                        </div>
-                        <a href="#" class="btn btn-outline" style="opacity: 0.5; pointer-events: none;"><i class="ph ph-lock-key"></i> Guide TBA</a>
-                    </div>
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">Agenda Item:</h4>
-                        <p style="color: var(--text-marble);">The Collapse of Ottoman Rule in the Balkans: Military Campaigns, Territorial Ambitions, and the Struggle for Regional Dominance during the First Balkan War</p>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.5); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">The Board (Dais):</h4>
-                        <ul style="color: var(--text-ash); list-style: none; display: flex; gap: 2rem; flex-wrap: wrap;">
-                            <li><strong style="color: var(--text-marble);">Crisis Director:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Chair:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Academic Assistant:</strong> TBA</li>
-                        </ul>
-                    </div>
-                </div>
+                <a href="hcc-balkan/" class="committee-card committee-link" data-category="expert">
+                    <div class="committee-tag">Expert</div>
+                    <h3 class="committee-title">HCC — First Balkan War</h3>
+                    <p class="committee-agenda" style="margin-bottom: 1rem;">
+                        The Collapse of Ottoman Rule in the Balkans: Military Campaigns and Regional Dominance.
+                    </p>
+                    <span class="btn btn-outline" style="width: 100%; margin-top: auto;">Enter Realm</span>
+                </a>
 
-                <!-- JCC — Pablo Escobar -->
-                <div class="glass-panel" style="padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <span class="badge" style="margin-bottom: 1rem; border-color: #ef4444; color: #ef4444; background: rgba(239, 68, 68, 0.1);">Expert</span>
-                            <h2 style="font-family: var(--font-mythic); font-size: 2.5rem;">JCC — Pablo Escobar</h2>
-                        </div>
-                        <a href="#" class="btn btn-outline" style="opacity: 0.5; pointer-events: none;"><i class="ph ph-lock-key"></i> Guide TBA</a>
-                    </div>
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">Agenda Item:</h4>
-                        <p style="color: var(--text-marble);">The Hunt for Pablo Escobar: The War between the Medellín Cartel and the Colombian State</p>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.5); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">The Board (Dais):</h4>
-                        <ul style="color: var(--text-ash); list-style: none; display: flex; gap: 2rem; flex-wrap: wrap;">
-                            <li><strong style="color: var(--text-marble);">Crisis Director:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Chair:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Academic Assistant:</strong> TBA</li>
-                        </ul>
-                    </div>
-                </div>
+                <a href="jcc-escobar/" class="committee-card committee-link" data-category="expert">
+                    <div class="committee-tag">Expert</div>
+                    <h3 class="committee-title">JCC — Pablo Escobar</h3>
+                    <p class="committee-agenda" style="margin-bottom: 1rem;">
+                        The Hunt for Pablo Escobar: The War between the Medellín Cartel and the Colombian State.
+                    </p>
+                    <span class="btn btn-outline" style="width: 100%; margin-top: auto;">Enter Realm</span>
+                </a>
 
-                <!-- HCC — Battle of Thermopylae -->
-                <div class="glass-panel" style="padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <span class="badge" style="margin-bottom: 1rem; border-color: #ef4444; color: #ef4444; background: rgba(239, 68, 68, 0.1);">Expert</span>
-                            <h2 style="font-family: var(--font-mythic); font-size: 2.5rem;">HCC — Battle of Thermopylae</h2>
-                        </div>
-                        <a href="#" class="btn btn-outline" style="opacity: 0.5; pointer-events: none;"><i class="ph ph-lock-key"></i> Guide TBA</a>
-                    </div>
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">Agenda Item:</h4>
-                        <p style="color: var(--text-marble);">The Battle of Thermopylae: Defending the Greek City-States against the Persian Invasion of 480 BCE</p>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.5); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">The Board (Dais):</h4>
-                        <ul style="color: var(--text-ash); list-style: none; display: flex; gap: 2rem; flex-wrap: wrap;">
-                            <li><strong style="color: var(--text-marble);">Crisis Director:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Chair:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Academic Assistant:</strong> TBA</li>
-                        </ul>
-                    </div>
-                </div>
+                <a href="hcc-thermopylae/" class="committee-card committee-link" data-category="expert">
+                    <div class="committee-tag">Expert</div>
+                    <h3 class="committee-title">HCC — Thermopylae</h3>
+                    <p class="committee-agenda" style="margin-bottom: 1rem;">
+                        Defending the Greek City-States against the Persian Invasion of 480 BCE.
+                    </p>
+                    <span class="btn btn-outline" style="width: 100%; margin-top: auto;">Enter Realm</span>
+                </a>
 
-                <!-- SPECPOL -->
-                <div class="glass-panel" style="padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <span class="badge" style="margin-bottom: 1rem; border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.1);">Beginner</span>
-                            <h2 style="font-family: var(--font-mythic); font-size: 2.5rem;">SPECPOL</h2>
-                        </div>
-                        <a href="#" class="btn btn-outline" style="opacity: 0.5; pointer-events: none;"><i class="ph ph-lock-key"></i> Guide TBA</a>
-                    </div>
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">Agenda Items:</h4>
-                        <p style="color: var(--text-marble); margin-bottom: 0.5rem;"><strong>Agenda 1:</strong> Addressing State Fragility, Foreign Intervention, and Regional Instability in Sudan and Post-Civil War Lebanon</p>
-                        <p style="color: var(--text-marble);"><strong>Agenda 2:</strong> Addressing Foreign Intervention and Regional Instability in Syria and Post-Civil War Lebanon</p>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.5); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">The Board (Dais):</h4>
-                        <ul style="color: var(--text-ash); list-style: none; display: flex; gap: 2rem; flex-wrap: wrap;">
-                            <li><strong style="color: var(--text-marble);">Chair:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Co-Chair:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Academic Assistant:</strong> TBA</li>
-                        </ul>
-                    </div>
-                </div>
+                <a href="specpol/" class="committee-card committee-link" data-category="beginner">
+                    <div class="committee-tag">Beginner</div>
+                    <h3 class="committee-title">SPECPOL</h3>
+                    <p class="committee-agenda" style="margin-bottom: 1rem;">
+                        Addressing State Fragility and Regional Instability in Sudan, Syria, and Lebanon.
+                    </p>
+                    <span class="btn btn-outline" style="width: 100%; margin-top: auto;">Enter Realm</span>
+                </a>
 
-                <!-- H-UNSC -->
-                <div class="glass-panel" style="padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <span class="badge" style="margin-bottom: 1rem; border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.1);">Intermediate</span>
-                            <h2 style="font-family: var(--font-mythic); font-size: 2.5rem;">H-UNSC — China–Taiwan</h2>
-                        </div>
-                        <a href="#" class="btn btn-outline" style="opacity: 0.5; pointer-events: none;"><i class="ph ph-lock-key"></i> Guide TBA</a>
-                    </div>
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">Agenda Items:</h4>
-                        <p style="color: var(--text-marble); margin-bottom: 0.5rem;"><strong>Agenda 1:</strong> The Taiwan Strait Crisis: Preventing Military Escalation between the People’s Republic of China and the Republic of China</p>
-                        <p style="color: var(--text-marble);"><strong>Agenda 2:</strong> The Third Taiwan Strait Crisis: Preventing Military Escalation between the People’s Republic of China and the Republic of China, 1995–1996</p>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.5); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">The Board (Dais):</h4>
-                        <ul style="color: var(--text-ash); list-style: none; display: flex; gap: 2rem; flex-wrap: wrap;">
-                            <li><strong style="color: var(--text-marble);">Chair:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Co-Chair:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Academic Assistant:</strong> TBA</li>
-                        </ul>
-                    </div>
-                </div>
+                <a href="h-unsc/" class="committee-card committee-link" data-category="intermediate">
+                    <div class="committee-tag">Intermediate</div>
+                    <h3 class="committee-title">H-UNSC</h3>
+                    <p class="committee-agenda" style="margin-bottom: 1rem;">
+                        The Taiwan Strait Crises: Preventing Military Escalation.
+                    </p>
+                    <span class="btn btn-outline" style="width: 100%; margin-top: auto;">Enter Realm</span>
+                </a>
 
-                <!-- INTERPOL -->
-                <div class="glass-panel" style="padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <span class="badge" style="margin-bottom: 1rem; border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.1);">Intermediate</span>
-                            <h2 style="font-family: var(--font-mythic); font-size: 2.5rem;">INTERPOL</h2>
-                        </div>
-                        <a href="#" class="btn btn-outline" style="opacity: 0.5; pointer-events: none;"><i class="ph ph-lock-key"></i> Guide TBA</a>
-                    </div>
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">Agenda Item:</h4>
-                        <p style="color: var(--text-marble);">The Global Manhunt for Osama bin Laden: Investigating the 9/11 Attacks and Disrupting Al-Qaeda’s International Terrorist Network</p>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.5); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                        <h4 style="color: var(--gold-lyre); font-family: var(--font-mythic); margin-bottom: 0.5rem;">The Board (Dais):</h4>
-                        <ul style="color: var(--text-ash); list-style: none; display: flex; gap: 2rem; flex-wrap: wrap;">
-                            <li><strong style="color: var(--text-marble);">Chair:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Co-Chair:</strong> TBA</li>
-                            <li><strong style="color: var(--text-marble);">Academic Assistant:</strong> TBA</li>
-                        </ul>
-                    </div>
-                </div>
+                <a href="interpol/" class="committee-card committee-link" data-category="intermediate">
+                    <div class="committee-tag">Intermediate</div>
+                    <h3 class="committee-title">INTERPOL</h3>
+                    <p class="committee-agenda" style="margin-bottom: 1rem;">
+                        The Global Manhunt for Osama bin Laden and Disrupting Terrorist Networks.
+                    </p>
+                    <span class="btn btn-outline" style="width: 100%; margin-top: auto;">Enter Realm</span>
+                </a>
 
             </div>
         </div>
     </section>
 
-    <!-- NEW MULTI-COLUMN FOOTER MATCHING IMAGE -->
     <footer class="footer border-top" id="faq">
         <div class="container footer-grid">
-            
             <div class="footer-brand">
-                <a href="../index.html" class="brand-logo">
-                    <i class="ph-fill ph-harp"></i>
-                    <span>OrfeyMun<span class="highlight">'27</span></span>
-                </a>
-                <p class="footer-desc">
-                    "Even the gods listen to those who speak."<br><br>
-                    &copy; 2027 OrfeyMun.<br>All rights reserved.
-                </p>
+                <a href="../#hero" class="brand-logo"><i class="ph-fill ph-harp"></i><span>OrfeyMun<span class="highlight">'27</span></span></a>
+                <p class="footer-desc">"Even the gods listen to those who speak."<br><br>&copy; 2027 OrfeyMun.<br>All rights reserved.</p>
             </div>
-            
             <div class="footer-links">
                 <h4>Conference</h4>
-                <a href="../index.html#about">The Mythos</a>
+                <a href="../#about">The Mythos</a>
                 <a href="../venue/">Venue & Date</a>
-                <a href="../index.html#register">Pre-Registration</a>
-                <a href="../index.html#faq">Oracle (FAQ)</a>
+                <a href="../apply/">Apply</a>
             </div>
-
-            <div class="footer-links">
-                <h4>Committees</h4>
-                <a href="../committees/">HCC — Balkan War</a>
-                <a href="../committees/">JCC — Escobar</a>
-                <a href="../committees/">HCC — Thermopylae</a>
-                <a href="../committees/">SPECPOL</a>
-                <a href="../committees/">H-UNSC</a>
-                <a href="../committees/">INTERPOL</a>
-            </div>
-
-            <div class="footer-links">
-                <h4>Legal</h4>
-                <a href="#">Decrees of Conduct</a>
-            </div>
-
             <div class="footer-links">
                 <h4>Social</h4>
                 <div class="social-row">
-                    <a href="https://instagram.com/orfeymun" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
-                        <i class="ph ph-instagram-logo"></i>
-                    </a>
+                    <a href="https://instagram.com/orfeymun" target="_blank"><i class="ph ph-instagram-logo"></i><span class="social-handle">@orfeymun</span></a>
                 </div>
             </div>
-
         </div>
     </footer>
 
